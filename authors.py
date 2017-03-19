@@ -3,10 +3,11 @@
 # and add it to a list, one item for an author.
 # See the provided data structure for the expected format.
 # The tags for first name, surname and email should map directly
-# to the dictionary keys
+# to the dictionary keys, but you have to extract the attributes from the "insr" tag
+# and add them to the list for the dictionary key "insr"
 import xml.etree.ElementTree as ET
 
-article_file = "exampleResearchArticle.xml"
+article_file = "exampleresearcharticle.xml"
 
 
 def get_root(fname):
@@ -20,7 +21,8 @@ def get_authors(root):
         data = {
                 "fnm": None,
                 "snm": None,
-                "email": None
+                "email": None,
+                "insr": []
         }
 
         # YOUR CODE HERE
@@ -29,19 +31,30 @@ def get_authors(root):
         data['snm'] = author.find('./snm').text
         data['email'] = author.find('./email').text
 
+        for a in author.findall('./insr'):
+            print a.attrib['iid']
+            data['insr'].append(a.attrib['iid'])
+
         authors.append(data)
 
     return authors
 
 
 def test():
-    solution = [{'fnm': 'Omer', 'snm': 'Mei-Dan', 'email': 'omer@extremegate.com'}, {'fnm': 'Mike', 'snm': 'Carmont', 'email': 'mcarmont@hotmail.com'}, {'fnm': 'Lior', 'snm': 'Laver', 'email': 'laver17@gmail.com'}, {'fnm': 'Meir', 'snm': 'Nyska', 'email': 'nyska@internet-zahav.net'}, {'fnm': 'Hagay', 'snm': 'Kammar', 'email': 'kammarh@gmail.com'}, {'fnm': 'Gideon', 'snm': 'Mann', 'email': 'gideon.mann.md@gmail.com'}, {'fnm': 'Barnaby', 'snm': 'Clarck', 'email': 'barns.nz@gmail.com'}, {'fnm': 'Eugene', 'snm': 'Kots', 'email': 'eukots@gmail.com'}]
-    
+    solution = [{'insr': ['I1'], 'fnm': 'Omer', 'snm': 'Mei-Dan', 'email': 'omer@extremegate.com'},
+                {'insr': ['I2'], 'fnm': 'Mike', 'snm': 'Carmont', 'email': 'mcarmont@hotmail.com'},
+                {'insr': ['I3', 'I4'], 'fnm': 'Lior', 'snm': 'Laver', 'email': 'laver17@gmail.com'},
+                {'insr': ['I3'], 'fnm': 'Meir', 'snm': 'Nyska', 'email': 'nyska@internet-zahav.net'},
+                {'insr': ['I8'], 'fnm': 'Hagay', 'snm': 'Kammar', 'email': 'kammarh@gmail.com'},
+                {'insr': ['I3', 'I5'], 'fnm': 'Gideon', 'snm': 'Mann', 'email': 'gideon.mann.md@gmail.com'},
+                {'insr': ['I6'], 'fnm': 'Barnaby', 'snm': 'Clarck', 'email': 'barns.nz@gmail.com'},
+                {'insr': ['I7'], 'fnm': 'Eugene', 'snm': 'Kots', 'email': 'eukots@gmail.com'}]
+
     root = get_root(article_file)
     data = get_authors(root)
 
     assert data[0] == solution[0]
-    assert data[1]["fnm"] == solution[1]["fnm"]
+    assert data[1]["insr"] == solution[1]["insr"]
 
 
 test()
