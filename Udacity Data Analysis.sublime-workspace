@@ -1,0 +1,413 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"op",
+				"options"
+			],
+			[
+				"options",
+				"option_values"
+			],
+			[
+				"ao",
+				"author"
+			],
+			[
+				"lt",
+				"lt0"
+			],
+			[
+				"title",
+				"titles"
+			],
+			[
+				"S",
+				"Station"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"max",
+				"maxtime"
+			],
+			[
+				"cv",
+				"cvmax"
+			],
+			[
+				"Coa",
+				"COASTMaxRtime"
+			],
+			[
+				"coast",
+				"COASTMax"
+			],
+			[
+				"SOUTH",
+				"SOUTH_C"
+			],
+			[
+				"NORTH_",
+				"NORTH_C"
+			],
+			[
+				"coa",
+				"COASTMaxTime"
+			],
+			[
+				"cost",
+				"COASTMax"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "authors.py",
+			"settings":
+			{
+				"buffer_size": 2111,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "extract_carries.py",
+			"settings":
+			{
+				"buffer_size": 511,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n# Please note that the function 'make_request' is provided for your reference only.\n# You will not be able to to actually use it from within the Udacity web UI.\n# Your task is to process the HTML using BeautifulSoup, extract the hidden\n# form field values for \"__EVENTVALIDATION\" and \"__VIEWSTATE\" and set the appropriate\n# values in the data dictionary.\n# All your changes should be in the 'extract_data' function\nfrom bs4 import BeautifulSoup\nimport requests\nimport json\n\nhtml_page = \"page_source.html\"\n\n\ndef extract_data(page):\n    data = {\"eventvalidation\": \"\",\n            \"viewstate\": \"\"}\n    with open(page, \"r\") as html:\n        # do something here to find the necessary values\n        soup = BeautifulSoup(html, 'lxml')\n        data['eventvalidation'] = soup.find(id='__EVENTVALIDATION')['value']\n        data['viewstate'] = soup.find(id = '__VIEWSTATE')['value']\n        pass\n    return data\n\n\ndef make_request(data):\n    eventvalidation = data[\"eventvalidation\"]\n    viewstate = data[\"viewstate\"]\n\n    r = requests.post(\"http://www.transtats.bts.gov/Data_Elements.aspx?Data=2\",\n                    data={'AirportList': \"BOS\",\n                          'CarrierList': \"VX\",\n                          'Submit': 'Submit',\n                          \"__EVENTTARGET\": \"\",\n                          \"__EVENTARGUMENT\": \"\",\n                          \"__EVENTVALIDATION\": eventvalidation,\n                          \"__VIEWSTATE\": viewstate\n                    })\n\n    return r.text\n\n\ndef test():\n    data = extract_data(html_page)\n    assert data[\"eventvalidation\"] != \"\"\n    assert data[\"eventvalidation\"].startswith(\"/wEWjAkCoIj1ng0\")\n    assert data[\"viewstate\"].startswith(\"/wEPDwUKLTI\")\n\n    \ntest()",
+			"file": "html_soup.py",
+			"file_size": 0,
+			"file_write_time": 131343947491984845,
+			"settings":
+			{
+				"buffer_size": 1751,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "list",
+		"selected_items":
+		[
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"pakcage",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packain",
+				"Package Control: Install Package"
+			],
+			[
+				"list ",
+				"Package Control: List Packages"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			],
+			[
+				"prefer",
+				"Preferences: Settings"
+			],
+			[
+				"build",
+				"Build With: C++ Single File - Run"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/anavgupta/Udacity_Data_Analysis"
+	],
+	"file_history":
+	[
+		"/home/anavgupta/Udacity_Data_Analysis/nytimes.py",
+		"/home/anavgupta/Udacity_Data_Analysis/popular-viewed-1.json",
+		"/home/anavgupta/Udacity_Data_Analysis/working_with_csv.py",
+		"/home/anavgupta/Desktop/xls_to_csv.py",
+		"/home/anavgupta/Desktop/a.py",
+		"/home/anavgupta/Downloads/musicbrainz.py",
+		"/home/anavgupta/Downloads/intro_to_xlrd.py",
+		"/home/anavgupta/Dropbox/coding/Sphere Online Judge (SPOJ) - Problems_files/analytics.js",
+		"/home/anavgupta/Downloads/eggs.csv",
+		"/home/anavgupta/Dropbox/coding/runningTime.cpp",
+		"/home/anavgupta/Dropbox/coding/beehives/behives.cpp"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"graphics8",
+			"Opinion",
+			"Opinon",
+			"return",
+			"while (x--) {\n\t\tint size;\n\t\tcin >> size;\n\t\tlong long sum = 0;\n\t\tfor (int i = 0; i < size; i++) {\n\t\t\tlong long t;\n\t\t\tcin >> t;\n\t\t\tsum += t;\n\t\t}",
+			"cases",
+			"void calculate(int army1, int army2);\nvoid sorting(int no[]);\n",
+			"for i in range(1, 10):\n        cv = sheet.col_values(i, start_rowx=1, end_rowx=None)\n        cvmax = max(cv)\n        maxtime = xlrd.xldate_as_tuple \\\n            (sheet.cel_values(i, cv.index(cvmax) + 1))\n        data[]\n    return data\n",
+			"void calculate(int army1, int army2);\nvoid sorting(int no[]);\nint main(void)\n{\n    int cases;\n\n}",
+			"COAST",
+			"#"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"void calculate(int army1, int army2);\nvoid sorting(int no[]);\n",
+			"for i in range(1, 10):\n        cv = sheet.col_values(i, start_rowx=1, end_rowx=None)\n        cvmax = max(cv)\n        maxtime = xlrd.xldate_as_tuple \\\n            (sheet.cel_values(i, cv.index(cvmax) + 1))\n        data[]\n    return data\n",
+			"oid calculate(int army1, int army2);\nvoid sorting(int no[]);\nint main(void)\n{",
+			"void calculate(int army1, int army2);\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "authors.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2111,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								799,
+								799
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "extract_carries.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 511,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								305,
+								305
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "html_soup.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								422,
+								422
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Udacity Data Analysis.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Dropbox/coding/coding.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
