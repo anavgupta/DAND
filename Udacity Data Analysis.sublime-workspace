@@ -4,6 +4,86 @@
 		"selected_items":
 		[
 			[
+				"Dict",
+				"DictReader"
+			],
+			[
+				"out",
+				"output_bad"
+			],
+			[
+				"o",
+				"OUTPUT_BAD"
+			],
+			[
+				"ou",
+				"OUTPUT_GOOD"
+			],
+			[
+				"new",
+				"new_file"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"u",
+				"utf-8"
+			],
+			[
+				"re",
+				"records"
+			],
+			[
+				"te",
+				"temp_dict"
+			],
+			[
+				"do",
+				"domestic"
+			],
+			[
+				"el",
+				"elif"
+			],
+			[
+				"fie",
+				"field"
+			],
+			[
+				"header",
+				"headers"
+			],
+			[
+				"f",
+				"fields"
+			],
+			[
+				"header_",
+				"header_row"
+			],
+			[
+				"dta",
+				"data_row"
+			],
+			[
+				"data",
+				"data_rows"
+			],
+			[
+				"carr",
+				"carriers"
+			],
+			[
+				"__",
+				"__EVENTVALIDATION"
+			],
+			[
+				"vi",
+				"viewstate_element"
+			],
+			[
 				"op",
 				"options"
 			],
@@ -26,10 +106,6 @@
 			[
 				"S",
 				"Station"
-			],
-			[
-				"data",
-				"data"
 			],
 			[
 				"max",
@@ -68,31 +144,20 @@
 	"buffers":
 	[
 		{
-			"file": "authors.py",
+			"file": "P3/Data Quality/validity.py",
 			"settings":
 			{
-				"buffer_size": 2111,
+				"buffer_size": 1731,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "extract_carries.py",
+			"file": "P3/Data Quality/autos.csv",
 			"settings":
 			{
-				"buffer_size": 511,
+				"buffer_size": 81121,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n# Please note that the function 'make_request' is provided for your reference only.\n# You will not be able to to actually use it from within the Udacity web UI.\n# Your task is to process the HTML using BeautifulSoup, extract the hidden\n# form field values for \"__EVENTVALIDATION\" and \"__VIEWSTATE\" and set the appropriate\n# values in the data dictionary.\n# All your changes should be in the 'extract_data' function\nfrom bs4 import BeautifulSoup\nimport requests\nimport json\n\nhtml_page = \"page_source.html\"\n\n\ndef extract_data(page):\n    data = {\"eventvalidation\": \"\",\n            \"viewstate\": \"\"}\n    with open(page, \"r\") as html:\n        # do something here to find the necessary values\n        soup = BeautifulSoup(html, 'lxml')\n        data['eventvalidation'] = soup.find(id='__EVENTVALIDATION')['value']\n        data['viewstate'] = soup.find(id = '__VIEWSTATE')['value']\n        pass\n    return data\n\n\ndef make_request(data):\n    eventvalidation = data[\"eventvalidation\"]\n    viewstate = data[\"viewstate\"]\n\n    r = requests.post(\"http://www.transtats.bts.gov/Data_Elements.aspx?Data=2\",\n                    data={'AirportList': \"BOS\",\n                          'CarrierList': \"VX\",\n                          'Submit': 'Submit',\n                          \"__EVENTTARGET\": \"\",\n                          \"__EVENTARGUMENT\": \"\",\n                          \"__EVENTVALIDATION\": eventvalidation,\n                          \"__VIEWSTATE\": viewstate\n                    })\n\n    return r.text\n\n\ndef test():\n    data = extract_data(html_page)\n    assert data[\"eventvalidation\"] != \"\"\n    assert data[\"eventvalidation\"].startswith(\"/wEWjAkCoIj1ng0\")\n    assert data[\"viewstate\"].startswith(\"/wEPDwUKLTI\")\n\n    \ntest()",
-			"file": "html_soup.py",
-			"file_size": 0,
-			"file_write_time": 131343947491984845,
-			"settings":
-			{
-				"buffer_size": 1751,
 				"line_ending": "Unix"
 			}
 		}
@@ -105,7 +170,7 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "list",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -141,7 +206,7 @@
 				"Build With: C++ Single File - Run"
 			]
 		],
-		"width": 449.0
+		"width": 485.0
 	},
 	"console":
 	{
@@ -161,10 +226,29 @@
 	},
 	"expanded_folders":
 	[
-		"/home/anavgupta/Udacity_Data_Analysis"
+		"/home/anavgupta/Udacity_Data_Analysis",
+		"/home/anavgupta/Udacity_Data_Analysis/P3",
+		"/home/anavgupta/Udacity_Data_Analysis/P3/Data Quality"
 	],
 	"file_history":
 	[
+		"/home/anavgupta/.config/sublime-text-3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/home/anavgupta/Udacity_Data_Analysis/Udacity Data Analysis.sublime-project",
+		"/home/anavgupta/Udacity_Data_Analysis/audit.py",
+		"/home/anavgupta/Udacity_Data_Analysis/split_data.py",
+		"/home/anavgupta/Udacity_Data_Analysis/split_data",
+		"/home/anavgupta/Udacity_Data_Analysis/patent.data",
+		"/home/anavgupta/Udacity_Data_Analysis/carriers.py",
+		"/home/anavgupta/Udacity_Data_Analysis/airports.py",
+		"/home/anavgupta/Udacity_Data_Analysis/extract_carries.py",
+		"/home/anavgupta/Udacity_Data_Analysis/process.py",
+		"/home/anavgupta/Udacity_Data_Analysis/data/FL-ATL.html",
+		"/home/anavgupta/Udacity_Data_Analysis/FL-ATL.html",
+		"/home/anavgupta/Udacity_Data_Analysis/Data Elements_files/jquery.js",
+		"/home/anavgupta/Udacity_Data_Analysis/authors.py",
+		"/home/anavgupta/Udacity_Data_Analysis/options.html",
+		"/home/anavgupta/Udacity_Data_Analysis/request_flights_data.py",
+		"/home/anavgupta/Udacity_Data_Analysis/html_soup.py",
 		"/home/anavgupta/Udacity_Data_Analysis/nytimes.py",
 		"/home/anavgupta/Udacity_Data_Analysis/popular-viewed-1.json",
 		"/home/anavgupta/Udacity_Data_Analysis/working_with_csv.py",
@@ -194,6 +278,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<?xml ",
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+			"<?xml",
+			"dataTDRight",
 			"graphics8",
 			"Opinion",
 			"Opinon",
@@ -226,95 +314,65 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "authors.py",
+					"file": "P3/Data Quality/validity.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2111,
+						"buffer_size": 1731,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								799,
-								799
+								1379,
+								1379
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
-						"translation.x": 0.0,
-						"translation.y": 306.0,
+						"translation.x": 93.0,
+						"translation.y": 378.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "extract_carries.py",
+					"file": "P3/Data Quality/autos.csv",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 511,
+						"buffer_size": 81121,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								305,
-								305
+								564,
+								564
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"open_with_edit": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "html_soup.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1751,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								422,
-								422
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -383,7 +441,7 @@
 		[
 			[
 				"",
-				"~/Dropbox/coding/coding.sublime-project"
+				"~/Udacity_Data_Analysis/Udacity Data Analysis.sublime-project"
 			]
 		],
 		"width": 380.0
