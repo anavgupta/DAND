@@ -4,12 +4,28 @@
 		"selected_items":
 		[
 			[
-				"Dict",
-				"DictReader"
-			],
-			[
 				"out",
 				"output_bad"
+			],
+			[
+				"writer",
+				"writerow"
+			],
+			[
+				"Dict",
+				"DictWriter"
+			],
+			[
+				"ba",
+				"bad_rows"
+			],
+			[
+				"goo",
+				"good_rows"
+			],
+			[
+				"output",
+				"outputB"
 			],
 			[
 				"o",
@@ -144,19 +160,26 @@
 	"buffers":
 	[
 		{
-			"file": "P3/Data Quality/validity.py",
+			"file": "P3/Data in more complex formats/airports.py",
 			"settings":
 			{
-				"buffer_size": 1731,
-				"encoding": "UTF-8",
+				"buffer_size": 964,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "P3/Data Quality/autos.csv",
+			"file": "P3/Data in more complex formats/parse_csv.py",
 			"settings":
 			{
-				"buffer_size": 81121,
+				"buffer_size": 1475,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "P3/Data in more complex formats/request_flights_data.py",
+			"settings":
+			{
+				"buffer_size": 720,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -206,7 +229,7 @@
 				"Build With: C++ Single File - Run"
 			]
 		],
-		"width": 485.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -228,10 +251,13 @@
 	[
 		"/home/anavgupta/Udacity_Data_Analysis",
 		"/home/anavgupta/Udacity_Data_Analysis/P3",
-		"/home/anavgupta/Udacity_Data_Analysis/P3/Data Quality"
+		"/home/anavgupta/Udacity_Data_Analysis/P3/Data Quality",
+		"/home/anavgupta/Udacity_Data_Analysis/P3/Data in more complex formats"
 	],
 	"file_history":
 	[
+		"/home/anavgupta/Udacity_Data_Analysis/P3/Data Quality/autos.csv",
+		"/home/anavgupta/Udacity_Data_Analysis/P3/Data Quality/validity.py",
 		"/home/anavgupta/.config/sublime-text-3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
 		"/home/anavgupta/Udacity_Data_Analysis/Udacity Data Analysis.sublime-project",
 		"/home/anavgupta/Udacity_Data_Analysis/audit.py",
@@ -278,6 +304,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"output_bad",
+			"open",
+			"output",
 			"<?xml ",
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
 			"<?xml",
@@ -314,65 +343,96 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "P3/Data Quality/validity.py",
+					"file": "P3/Data in more complex formats/airports.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1731,
+						"buffer_size": 964,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1379,
-								1379
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"open_with_edit": true,
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 93.0,
-						"translation.y": 378.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "P3/Data Quality/autos.csv",
+					"file": "P3/Data in more complex formats/parse_csv.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 81121,
+						"buffer_size": 1475,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								564,
-								564
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"open_with_edit": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "P3/Data in more complex formats/request_flights_data.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 720,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								718,
+								720
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -441,7 +501,7 @@
 		[
 			[
 				"",
-				"~/Udacity_Data_Analysis/Udacity Data Analysis.sublime-project"
+				"~/Dropbox/coding/coding.sublime-project"
 			]
 		],
 		"width": 380.0

@@ -40,11 +40,39 @@ FIELDS = ["name", "timeZone_label", "utcOffset", "homepage", "governmentType_lab
           "maximumElevation", "minimumElevation", "populationDensity",
           "wgs84_pos#lat", "wgs84_pos#long", "areaLand", "areaMetro", "areaUrban"]
 
+def get_field_type(fieldvalue):
+    try:
+        if (fieldvalue == "NULL" or fieldvalue == ""):
+            return type(None)
+        elif (fieldvalue[:1] == "{"):
+            return type([])
+        elif(int(fieldvalue) and float(fieldvalue)):
+            return type(int())
+
+    except ValueError:
+        try:
+            if(float(fieldvalue)):
+                return type(float())
+        except ValueError:
+            return type('str')
+
+
 def audit_file(filename, fields):
     fieldtypes = {}
 
     # YOUR CODE HERE
 
+    for field in FIELDS:
+        fieldtypes[field] = set([])
+
+    with open (filename, "r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            # print row
+            if (row["URI"].find('dbpedia.org') < 0):
+                continue;
+            for field in FIELDS:
+                fieldtypes[field].add(get_field_type(row[field]))
 
     return fieldtypes
 
