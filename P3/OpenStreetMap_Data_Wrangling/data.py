@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import xml.etree.cElementTree as ET
+import lxml.etree as ET
 import pprint
 import re
 import codecs
@@ -12,6 +12,7 @@ problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
 
+fault_nodes = []
 
 def shape_element(element):
     node = {}
@@ -37,8 +38,10 @@ def shape_element(element):
 	            node['pos'].append(float(attrib['lat']))
 	            node['pos'].append(float(attrib['lon']))
         except KeyError as e:
-        	print element.tag
-        	print element.attrib
+            print str(e)
+            fault_nodes.append(node)
+         #    print element.tag
+        	# print element.attrib
 
         # if there are 'tags' nodes present in the element
         for tag in element.iter("tag"):

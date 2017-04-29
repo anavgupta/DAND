@@ -3,10 +3,7 @@
 
 import xml.etree.cElementTree as ET
 
-OSM_FILE = 'birmingham_england.osm'
-SAMPLE_FILE = 'sample.osm'
-
-k = 100
+k = 50
 
 def get_element(osm_file, tags=('node', 'way', 'relation')):
 	"""Yeild element if it is the right type of tag
@@ -24,16 +21,19 @@ generated-via-xml-etree-elementtree-in-python
 			root.clear()
 
 
-with open (SAMPLE_FILE, 'wb') as output:
-	output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-	output.write('<osm>\n   ')
+def create(infile, outfile):
+	with open (outfile, 'wb') as output:
+		output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+		output.write('<osm>\n   ')
 
-	# write every kth top level element
-	for i, element in enumerate(get_element(OSM_FILE)):
-		if i % k == 0:
-			output.write(ET.tostring(element, encoding='utf-8'))
+		# write every kth top level element
+		for i, element in enumerate(get_element(infile)):
+			if i % k == 0:
+				output.write(ET.tostring(element, encoding='utf-8'))
 
-	output.write('</osm>')
+		output.write('</osm>')
 
-
-
+if __name__ == "__main__":
+	OSM_FILE = 'birmingham_england.osm'
+	SAMPLE_FILE = 'sample.osm'
+	create(OSM_FILE, SAMPLE_FILE)
