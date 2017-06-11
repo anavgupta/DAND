@@ -1,47 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Your task is to use the iterative parsing to process the map file and
-find out not only what tags are there, but also how many, to get the
-feeling on how much of which data you can expect to have in the map.
-Fill out the count_tags function. It should return a dictionary with the
-tag name as the key and number of times this tag can be encountered in
-the map as value.
-
-Note that your code will be tested with a different data file than the 'example.osm'
+mapparser.py
+This file is used to calculate the tags and their count in an OSM file.
 """
-import xml.etree.cElementTree as ET
-import pprint
+from create_sample_data import get_element
 
+
+# To count the tags present in the OSM file.
 def count_tags(filename):
-        # YOUR CODE HERE
     tags = {}
 
-    with open(filename) as f:
-        for event, elem in ET.iterparse(f):
-            # print elem.tag
-            if elem.tag in tags:
-                tags[elem.tag] += 1
-            else:
-                tags[elem.tag] = 1
+    for i, elem in enumerate(get_element(filename)):
+        # print elem.tag
+        if elem.tag in tags:
+            tags[elem.tag] += 1
+        else:
+            tags[elem.tag] = 1
 
     return tags
 
 
-def test():
-
-    tags = count_tags('example_mapparser.osm')
-    pprint.pprint(tags)
-    assert tags == {'bounds': 1,
-                     'member': 3,
-                     'nd': 4,
-                     'node': 20,
-                     'osm': 1,
-                     'relation': 1,
-                     'tag': 7,
-                     'way': 1}
-
-
-
-# if __name__ == "__main__":
-#     test()
+# If the file is being run Individually
+if __name__ == "__main__":
+    filename = raw_input()
+    data = count_tags(filename)
+    import pprint
+    pprint.pprint(data)

@@ -22,11 +22,12 @@ expected = ["Street", "Avenue", "Boulevard", "Drive", "Court", "Place", "Square"
             "Trail", "Parkway", "Commons"]
 
 # UPDATE THIS VARIABLE
-mapping = { "St": "Street",
-            "St.": "Street",
-            "Ave" : "Avenue",
-            "Rd." : "Road"
-            }
+mapping = {
+    "St": "Street",
+    "St.": "Street",
+    "Ave": "Avenue",
+    "Rd.": "Road"
+}
 
 
 def audit_street_type(street_types, street_name):

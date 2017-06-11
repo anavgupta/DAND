@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import xml.etree.cElementTree as ET
-import pprint
+# import pprint
 import re
 import codecs
 import json
 """
 Your task is to wrangle the data and transform the shape of the data
 into the model we mentioned earlier. The output should be a list of dictionaries
-that look like this:
+# that look like this:
 
 {
 "id": "2406124091",
@@ -90,12 +90,12 @@ lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
-CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
+CREATED = ["version", "changeset", "timestamp", "user", "uid"]
 
 
 def shape_element(element):
     node = {}
-    if element.tag == "node" or element.tag == "way" :
+    if element.tag == "node" or element.tag == "way":
 
         # add all the attribute of the element in a key:value style
         attrib = element.attrib
@@ -145,7 +145,7 @@ def shape_element(element):
                             node[keys[0]][keys[1]] = tag.attrib['v']
                         else:
                             if type(node[keys[0]]) is dict:
-                                node[keys[0]].update({[keys[1]] : tag.attrib['v']})
+                                node[keys[0]].update({[keys[1]]: tag.attrib['v']})
                             else:
                                 t_dict = {}
                                 t_dict[keys[0]] = node[keys[0]]
@@ -166,7 +166,7 @@ def shape_element(element):
         return None
 
 
-def process_map(file_in, pretty = False):
+def process_map(file_in, pretty=False):
     # You do not need to change this file
     file_out = "{0}.json".format(file_in)
     data = []
@@ -176,7 +176,7 @@ def process_map(file_in, pretty = False):
             if el:
                 data.append(el)
                 if pretty:
-                    fo.write(json.dumps(el, indent=2)+"\n")
+                    fo.write(json.dumps(el, indent=2) + "\n")
                 else:
                     fo.write(json.dumps(el) + "\n")
     return data
@@ -187,7 +187,7 @@ def test():
     # call the process_map procedure with pretty=False. The pretty=True option adds
     # additional spaces to the output, making it significantly larger.
     data = process_map('example.osm', True)
-    #pprint.pprint(data)
+    # pprint.pprint(data)
 
     correct_first_elem = {
         "id": "261114295",
@@ -205,13 +205,12 @@ def test():
 
     assert data[0] == correct_first_elem
     assert data[-1]["address"] == {
-                                    "street": "West Lexington St.",
-                                    "housenumber": "1412"
-                                      }
-    print data[-1]
-    assert data[-1]["node_refs"] == [ "2199822281", "2199822390",  "2199822392", "2199822369",
-                                    "2199822370", "2199822284", "2199822281"]
+        "street": "West Lexington St.",
+        "housenumber": "1412"}
 
+    print data[-1]
+    assert data[-1]["node_refs"] == ["2199822281", "2199822390", "2199822392",
+                                    "2199822369", "2199822370", "2199822284", "2199822281"]
 
 
 if __name__ == "__main__":
